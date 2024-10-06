@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb+srv://deepak:deepak@cluster-0.leprs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-0
+    ports:
+      - "8080:8080"
+
