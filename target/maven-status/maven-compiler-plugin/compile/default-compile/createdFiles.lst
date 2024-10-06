@@ -1,0 +1,4 @@
+com/solution_architect/restservice/RestServiceApplication.class
+com/solution_architect/restservice/GreetingController.class
+com/mongodb/Connection.class
+com/solution_architect/restservice/Greeting.class
