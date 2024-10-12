@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/complete_architecture-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the port your app runs on
-EXPOSE 8080
+EXPOSE 8085
 
 # Run the app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

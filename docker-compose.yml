@@ -7,5 +7,5 @@ services:
     environment:
       SPRING_DATA_MONGODB_URI: mongodb+srv://deepak:deepak@cluster-0.leprs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-0
     ports:
-      - "8080:8080"
+      - "8085:8080"
 

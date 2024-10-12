@@ -22,3 +22,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+Total 61 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), done.
+remote: warning: See https://gh.io/lfs for more information.
+remote: warning: File target/complete_architecture-0.0.1-SNAPSHOT.jar is 52.11 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+To https://github.com/dipuvish5/solution-architecture.git
+   200b1c5..a4cbec0  master -> master
