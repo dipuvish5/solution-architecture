@@ -10,7 +10,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "cicd-workflow" ]
+    branches: [ "cicd-java-workflow" ]
   pull_request:
     branches: [ "master" ]
 
