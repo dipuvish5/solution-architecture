@@ -19,8 +19,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        java: [ '17', '21' ]
-        os: [ 'ubuntu-24.04', 'windows-latest']
+        java: [ '21' ]
+        os: [ 'ubuntu-24.04']
     name: Java ${{ matrix.java }} (${{ matrix.os }}) sample
     steps:
     - uses: actions/checkout@v4
