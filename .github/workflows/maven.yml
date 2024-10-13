@@ -21,6 +21,7 @@ jobs:
       matrix:
         java: [ '21' ]
         os: [ 'ubuntu-24.04']
+        
     name: Java ${{ matrix.java }} (${{ matrix.os }}) sample
     steps:
     - uses: actions/checkout@v4
@@ -37,6 +38,7 @@ jobs:
     name: Push Docker images using Docker Compose
     # needs: build  # Ensure the Java build is complete before Docker Compose
     runs-on: ubuntu-24.04
+    environment: PROD
     permissions:
       packages: write
       contents: read
