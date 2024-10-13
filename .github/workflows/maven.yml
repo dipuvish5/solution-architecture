@@ -84,14 +84,14 @@ jobs:
 
       # Build and push Docker images using Docker Compose
       - name: Build and push images
+        id: build_push
         run: |
           docker-compose -f docker-compose.yml build   # Build all services defined in docker-compose.yml
           docker-compose -f docker-compose.yml push    # Push all services to Docker Hub
 
-      # Optional: Attest the Docker image build
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ secrets.DOCKER_USERNAME }}/solution-architecture  # Replace with your repo details
-          subject-digest: ${{ steps.meta.outputs.digest }}
+          subject-name: ${{ secrets.DOCKER_USERNAME }}/solution-architecture  # Your image name
+          subject-digest: ${{ steps.build_push.outputs.digest }}  # Image digest from the build step
           push-to-registry: true
