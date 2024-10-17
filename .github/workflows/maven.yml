@@ -88,6 +88,23 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml build   # Build all services defined in docker-compose.yml
           docker-compose -f docker-compose.yml push    # Push all services to Docker Hub
+          
+  deploy:
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Step 1: SSH into EC2 and pull the latest Docker image
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
+            docker stop myapp || true
+            docker rm myapp || true
+            docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
 
       # Optional
       # - name: Generate artifact attestation
