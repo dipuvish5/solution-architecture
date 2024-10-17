@@ -8,13 +8,13 @@ on:
 
 jobs:
   build:
+    name: Java ${{ matrix.java }} (${{ matrix.os }}) sample
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         java: [ '21' ]
         os: [ 'ubuntu-24.04' ]
-        
-    name: Java ${{ matrix.java }} (${{ matrix.os }}) sample
+
     steps:
       - uses: actions/checkout@v4
       - name: Setup Java
@@ -91,6 +91,7 @@ jobs:
 
   deploy:
     name: Deploy Docker images in EC2
+    needs: push_to_registry
     runs-on: ${{ matrix.os }}
     environment: PROD
 
