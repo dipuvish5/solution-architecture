@@ -90,7 +90,10 @@ jobs:
           docker-compose -f docker-compose.yml push    # Push all services to Docker Hub
 
   deploy:
+    name: Deploy Docker images in EC2
     runs-on: ${{ matrix.os }}
+    environment: PROD
+
     steps:
       # Step 1: SSH into EC2 and pull the latest Docker image
       - name: Deploy to EC2
