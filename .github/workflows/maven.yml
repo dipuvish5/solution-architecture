@@ -113,10 +113,12 @@ jobs:
           port: 22
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
+            # Ensure old container is stopped and removed
             docker stop myapp || true
             docker rm myapp || true
+            # Run the new container
             docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
-
+            
       # Optional
       # - name: Generate artifact attestation
         # uses: actions/attest-build-provenance@v1
