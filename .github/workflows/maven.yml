@@ -85,13 +85,18 @@ jobs:
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/solution-architecture  # Replace with your Docker Hub repo
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
       # Build and push Docker images using Docker Compose
       - name: Build and push images
         id: build_push
         run: |
-          docker-compose -f docker-compose.yml build   # Build all services defined in docker-compose.yml
+          # Create a new buildx builder and bootstrap it for multi-platform builds
+          docker buildx create --use
+          # Build and push the image for both amd64 and arm64 architectures
+          docker-compose -f docker-compose.yml build --platform linux/amd64,linux/arm64    # Build all services defined in docker-compose.yml
           docker-compose -f docker-compose.yml push    # Push all services to Docker Hub
-
 
   deploy:
     name: Deploy Docker images in EC2
@@ -117,8 +122,8 @@ jobs:
             docker stop myapp || true
             docker rm myapp || true
             # Run the new container
-            docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
-            
+            docker run -d --platform linux/arm64 --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
+
       # Optional
       # - name: Generate artifact attestation
         # uses: actions/attest-build-provenance@v1
