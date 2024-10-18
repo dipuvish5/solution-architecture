@@ -92,6 +92,7 @@ jobs:
           docker-compose -f docker-compose.yml build   # Build all services defined in docker-compose.yml
           docker-compose -f docker-compose.yml push    # Push all services to Docker Hub
 
+
   deploy:
     name: Deploy Docker images in EC2
     needs: push_to_registry
