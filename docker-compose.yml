@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       platform: linux/arm64  # Specify ARM64 platform for EC2
-    image: "${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest"  # Replace with your Docker Hub username and repo name
+    image: "${DOCKER_USERNAME}/solution-architecture:latest"  # Replace with your Docker Hub username and repo name
     environment:
       SPRING_DATA_MONGODB_URI: mongodb+srv://deepak:deepak@cluster-0.leprs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-0
     ports:
