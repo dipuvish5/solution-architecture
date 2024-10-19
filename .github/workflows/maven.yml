@@ -95,13 +95,14 @@ jobs:
           # Create a new buildx builder and bootstrap it for multi-platform builds
           docker buildx create --use
           # Build and push the image for both amd64 and arm64 architectures
-          docker-compose -f docker-compose.yml build --progress=plain --pull --no-cache
+          # docker-compose -f docker-compose.yml build --progress=plain --pull --no-cache
+          docker buildx build --platform linux/amd64,linux/arm64 -t dipuvish5/solution-architecture:latest . --push
 
       - name: List Docker images
         run: docker images
-      - name: Push Docker image
-        run: |
-          docker-compose -f docker-compose.yml push
+      # - name: Push Docker image
+      #   run: |
+      #     docker-compose -f docker-compose.yml push
 
   deploy:
     name: Deploy Docker images in EC2
