@@ -128,7 +128,7 @@ jobs:
             docker stop myapp || true
             docker rm myapp || true
             # Run the new container
-            docker run -d --platform linux/arm64 --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
+            docker run -d --platform linux/arm64 --name myapp -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/solution-architecture:latest
 
       # Optional
       # - name: Generate artifact attestation
