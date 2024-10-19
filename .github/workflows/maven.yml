@@ -87,16 +87,21 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      
+
       # Build and push Docker images using Docker Compose
       - name: Build and push images
-        id: build_push
+        id: build_immage
         run: |
           # Create a new buildx builder and bootstrap it for multi-platform builds
           docker buildx create --use
           # Build and push the image for both amd64 and arm64 architectures
-          docker-compose -f docker-compose.yml build --platform linux/amd64,linux/arm64    # Build all services defined in docker-compose.yml
-          docker-compose -f docker-compose.yml push    # Push all services to Docker Hub
+          docker-compose -f docker-compose.yml build --progress=plain --pull --no-cache
+
+      - name: List Docker images
+        run: docker images
+      - name: Push Docker image
+        run: |
+          docker-compose -f docker-compose.yml push
 
   deploy:
     name: Deploy Docker images in EC2
